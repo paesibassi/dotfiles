@@ -1,0 +1,30 @@
+[filter "lfs"]
+	required = true
+	clean = git-lfs clean %f
+	smudge = git-lfs smudge %f
+[user]
+	name = Federico Calore
+	email = Federico.Calore@ing.nl
+[core]
+	excludesfile = /Users/federico/.gitignore_global
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[commit]
+	template = /Users/federico/.stCommitMsg
+[color]
+	diff = auto
+	branch = auto
+	status = auto
+[alias]
+	st = status
+	ch = checkout
+	logg = log --graph --all --decorate --oneline
+	lg = log --graph --pretty=format:'%Cred%h%Creset - %<(60,trunc)%s %Cgreen(%cr) %C(bold blue)<%an>%Creset %C(yellow)%d%Creset' --abbrev-commit
+	df = diff --stat --summary
+	mergelog = merge --no-ff --log
+[credential]
+	helper = store
