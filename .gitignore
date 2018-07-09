@@ -1,0 +1,2 @@
+# ignore the plugin folder in nvim (these are cloned by Plugged)
+nvim/.config/nvim/plugged/
