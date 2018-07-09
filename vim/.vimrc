@@ -24,3 +24,5 @@ call plug#end()
 
 colo molokai
 syntax on
+set number
+
