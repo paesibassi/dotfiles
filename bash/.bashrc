@@ -2,6 +2,7 @@
 
 export PATH="$PATH:/Users/federico/Library/Python/2.7/bin"
 export PATH="$PATH:Users/federico/Library/Python/3.6/bin"
+export PATH="$PATH:/anaconda3/bin"
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
