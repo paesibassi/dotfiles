@@ -20,6 +20,8 @@ Plug 'tomasr/molokai' " monokai theme port for vim
 
 Plug 'scrooloose/nerdtree' " NERDTree is a file system explorer for the Vim editor
 
+Plug 'kshenoy/vim-signature' " vim-signature is a plugin to place, toggle and display marks.
+
 call plug#end()
 
 colo molokai
