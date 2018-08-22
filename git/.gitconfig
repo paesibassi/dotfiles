@@ -4,7 +4,7 @@
 	smudge = git-lfs smudge %f
 [user]
 	name = Federico Calore
-	email = Federico.Calore@ing.nl
+	email = fedecalo@gmail.com
 [core]
 	excludesfile = /Users/federico/.gitignore_global
 [difftool "sourcetree"]
