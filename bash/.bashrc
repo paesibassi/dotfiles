@@ -1,8 +1,9 @@
 # .bashrc is sourced by .bash_profile
 
 export PATH="$PATH:/Users/federico/Library/Python/2.7/bin"
-export PATH="$PATH:Users/federico/Library/Python/3.6/bin"
+export PATH="$PATH:/Users/federico/Library/Python/3.6/bin"
 export PATH="$PATH:/anaconda3/bin"
+export PATH="$PATH:/opt/apache-maven/bin"
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
