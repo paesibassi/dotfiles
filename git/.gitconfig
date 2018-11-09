@@ -22,9 +22,12 @@
 [alias]
 	st = status
 	ch = checkout
+	rh = reset --hard
 	logg = log --graph --all --decorate --oneline
 	lg = log --graph --pretty=format:'%Cred%h%Creset - %<(60,trunc)%s %Cgreen(%cr) %C(bold blue)<%an>%Creset %C(yellow)%d%Creset' --abbrev-commit
 	df = diff --stat --summary
 	mergelog = merge --no-ff --log
+	# "push upstream" (sets upstream if unset, pushes) - a more reliable version of an alias I found on stack overflow
+        pu =![[ $(git config branch.$(git symbolic-ref --short HEAD).merge) = '' ]] && git push -u origin $(git symbolic-ref --short HEAD) || git push
 [credential]
 	helper = store
