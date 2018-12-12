@@ -1,9 +1,5 @@
 # .bashrc is sourced by .bash_profile
 
-export PATH="$PATH:/Users/federico/Library/Python/2.7/bin"
-export PATH="$PATH:/Users/federico/Library/Python/3.6/bin"
-export PATH="$PATH:/anaconda3/bin"
-export PATH="$PATH:/opt/apache-maven/bin"
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
@@ -35,7 +31,6 @@ alias ll='ls -lahG'
 alias home='cd ~'
 #alias up='cd ..'
 #alias h='history'
-alias py3='source ~/Repositories/py3env/bin/activate && which python'
 
 # command options
 alias mv='mv -i'
@@ -44,4 +39,3 @@ alias rm='rm -i'
 alias df='df -h'
 alias du='du -h'
 #alias mkdir='mkdir -p'
-alias sp='source ~/setproxy.sh'
