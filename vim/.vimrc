@@ -6,6 +6,8 @@ Plug 'tpope/vim-sensible' " Defaults vim configurations
 Plug 'tpope/vim-fugitive' " git wrapper
 
 Plug 'tpope/vim-markdown' " markdown
+" Plug 'godlygeek/tabular'
+" Plug 'plasticboy/vim-markdown' " markdown plugin, alternative to tpope/vim-markdown
 
 Plug 'tpope/vim-surround' " surround text
 
