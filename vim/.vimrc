@@ -24,9 +24,16 @@ Plug 'scrooloose/nerdtree' " NERDTree is a file system explorer for the Vim edit
 
 Plug 'kshenoy/vim-signature' " vim-signature is a plugin to place, toggle and display marks.
 
+Plug 'junegunn/fzf' " fuzzy finder
+
+Plug 'w0rp/ale' " Asynchronous Lint Engine
+
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py' } " Code-completion Engine for VIM
+
+
 call plug#end()
 
 colo molokai
 syntax on
 set number
-
+set clipboard+=unnamedplus  " sets the unnamed register to the system clipboard
