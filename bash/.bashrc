@@ -19,6 +19,14 @@ if [ -f ~/.git-prompt.sh ]; then
 	export PROMPT_COMMAND='__git_ps1 "\u@\h:\W" "\\\$ ";'
 fi
 
+# prevent python system wide installs
+export PIP_REQUIRE_VIRTUALENV=true
+
+# alias to install system wide packages
+gpip() {
+    PIP_REQUIRE_VIRTUALENV="" pip "$@"
+}
+
 # command history settings
 export HISTSIZE=5000                      # 500 is default
 export HISTFILESIZE=100000
