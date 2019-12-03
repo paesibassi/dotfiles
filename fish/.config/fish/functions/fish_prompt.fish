@@ -1,45 +1,120 @@
-function fish_prompt --description 'Write out the prompt'
-	set laststatus $status
-    function _git_branch_name
-        echo (git symbolic-ref HEAD ^/dev/null | sed -e 's|^refs/heads/||')
-    end
-    function _is_git_dirty
-        echo (git status -s --ignore-submodules=dirty ^/dev/null)
-    end
-    if [ (_git_branch_name) ]
-        set -l git_branch (set_color -o blue)(_git_branch_name)
-        if [ (_is_git_dirty) ]
-            for i in (git branch -qv --no-color | string match -r '\*' | cut -d' ' -f4- | cut -d] -f1 | tr , \n)\
- (git status --porcelain | cut -c 1-2 | uniq)
-                switch $i
-                    case "*[ahead *"
-                        set git_status "$git_status"(set_color red)⬆
-                    case "*behind *"
-                        set git_status "$git_status"(set_color red)⬇
-                    case "."
-                        set git_status "$git_status"(set_color green)✚
-                    case " D"
-                        set git_status "$git_status"(set_color red)✖
-                    case "*M*"
-                        set git_status "$git_status"(set_color green)✱
-                    case "*R*"
-                        set git_status "$git_status"(set_color purple)➜
-                    case "*U*"
-                        set git_status "$git_status"(set_color brown)═
-                    case "??"
-                        set git_status "$git_status"(set_color red)≠
-                end
-            end
-        else
-            set git_status (set_color green):
-        end
-        set git_info "(git$git_status$git_branch"(set_color white)")"
-    end
-    set_color -b black
-    printf '%s%s%s%s%s%s%s%s%s%s%s%s%s' (set_color -o white) '❰' (set_color green) $USER (set_color white) '❙' (set_color yellow) (echo $PWD | sed -e "s|^$HOME|~|") (set_color white) $git_info (set_color white) '❱' (set_color white)
-    if test $laststatus -eq 0
-        printf "%s✔%s≻%s " (set_color -o green) (set_color white) (set_color normal)
+function fish_prompt
+    set -l status_copy $status
+    set -l pwd_info (pwd_info "/")
+    set -l dir
+    set -l base
+    set -l base_color 888 161616
+
+    if test "$PWD" = ~
+        set base "~"
+
+    else if pwd_is_home
+        set dir "~/"
     else
-        printf "%s✘%s≻%s " (set_color -o red) (set_color white) (set_color normal)
+        if test "$PWD" != /
+            set dir "/"
+        end
+
+        set base (set_color red)"/"
     end
+
+    if test ! -z "$pwd_info[1]"
+        set base "$pwd_info[1]"
+    end
+
+    if test ! -z "$pwd_info[2]"
+        set dir "$dir$pwd_info[2]/"
+    end
+
+    if test ! -z "$pwd_info[3]"
+        segment $base_color " $pwd_info[3] "
+    end
+
+    if set branch_name (git_branch_name)
+        set -l git_color black green
+        set -l git_glyph ""
+
+        if git_is_staged
+            set git_color black yellow
+
+            if git_is_dirty
+                set git_color $git_color white red
+            end
+
+        else if git_is_dirty
+            set git_color white red
+
+        else if git_is_touched
+            set git_color white red
+        end
+
+        if git_is_detached_head
+            set git_glyph "➤"
+
+        else if git_is_stashed
+            set git_glyph "╍╍"
+        end
+
+        set -l prompt
+        set -l git_ahead (git_ahead "+ " "- " "+- ")
+
+        if test "$branch_name" = master
+            set prompt " $git_glyph $git_ahead"
+        else
+            set prompt " $git_glyph $branch_name $git_ahead"
+        end
+
+        if set -q git_color[3]
+            segment "$git_color[3]" "$git_color[4]" "$prompt"
+            segment black black
+            segment "$git_color[1]" "$git_color[2]" " $git_glyph "
+        else
+            segment "$git_color[1]" "$git_color[2]" "$prompt"
+        end
+    end
+
+    segment $base_color " $dir"(set_color white)"$base "
+
+    if test ! -z "$SSH_CLIENT"
+        set -l color bbb 222
+
+        if test 0 -eq (id -u "$USER")
+            set color red 222
+        end
+
+        segment $color (host_info " usr@host ")
+
+    else if test 0 -eq (id -u "$USER")
+        segment red 222 " \$ "
+    end
+
+    if test "$status_copy" -ne 0
+        segment red white (set_color -o)" ! "(set_color normal)
+
+    else if last_job_id > /dev/null
+        segment white 333 " %% "
+    end
+
+    if [ "$theme_display_virtualenv" != 'no' ]; and set -q VIRTUAL_ENV
+        segment yellow blue " "(basename "$VIRTUAL_ENV")" "
+    end
+
+    if [ "$theme_display_ruby" != 'no' ]; and set -q RUBY_VERSION
+        segment red fff " "(basename "$RUBY_VERSION")" "
+    end
+
+    if test "$fish_key_bindings" = "fish_vi_key_bindings"
+      switch $fish_bind_mode
+        case default
+          segment white red "[N]"
+        case insert
+          segment black green "[I]"
+        case replace-one
+          segment yellow blue "[R]"
+        case visual
+          segment white magenta "[V]"
+      end
+    end
+
+    segment_close
 end

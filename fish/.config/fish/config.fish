@@ -1,4 +1,7 @@
+# set fish prompt
 . ~/.config/fish/functions/fish_prompt.fish
+# disable updating the prompt when virtualenv activates (use custom prompt instead)
+set VIRTUAL_ENV_DISABLE_PROMPT disable
 
 # miniconda
 set PATH $PATH /Users/federico/miniconda3/bin
@@ -12,6 +15,9 @@ set PATH $PATH /Users/federico/bin
 
 # git
 set -x LC_ALL en_US.UTF-8
+
+# prevent python system wide installs
+set -x PIP_REQUIRE_VIRTUALENV true
 
 # Google Cloud SDK
 if [ -f '/Users/federico/google-cloud-sdk/path.fish.inc' ]; . '/Users/federico/google-cloud-sdk/path.fish.inc'; end
