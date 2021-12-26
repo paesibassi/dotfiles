@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+sudo python3 ~/bin/split_dns.py
 sudo brew services start dnsmasq
 sudo scutil << EOF
 open

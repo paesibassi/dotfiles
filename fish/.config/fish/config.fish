@@ -23,3 +23,6 @@ set -x PIP_REQUIRE_VIRTUALENV true
 if [ -f '/Users/federico/google-cloud-sdk/path.fish.inc' ]; . '/Users/federico/google-cloud-sdk/path.fish.inc'; end
 
 test -e {$HOME}/.iterm2_shell_integration.fish ; and source {$HOME}/.iterm2_shell_integration.fish
+
+# Load fishmarks (http://github.com/techwizrd/fishmarks)
+. $HOME/.fishmarks/marks.fish
