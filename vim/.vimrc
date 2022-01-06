@@ -40,7 +40,8 @@ set number
 " AirLine config
 let g:airline#extensions#tabline#enabled = 1 " enables displaying all buffers in the statusline
 
-let g:nv_search_paths = ['~/Library/Mobile\ Documents/com~apple~CloudDocs/Notational', '~/Library/Mobile\ Documents/com~hogbaysoftware~TaskPaper/Documents'] " list of folders to search for notational plugin
+" list of folders to search for notational plugin
+let g:nv_search_paths = ['~/Google\ Drive/My\ Drive/Notational', '~/Library/Mobile\ Documents/com~apple~CloudDocs/Notational', '~/Library/Mobile\ Documents/com~hogbaysoftware~TaskPaper/Documents']
 let g:nv_default_extension = '.txt'
 
 " Kite completions config
