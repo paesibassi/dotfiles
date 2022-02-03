@@ -68,3 +68,4 @@ ipython_config.py
 # Application files #
 #####################
 .vscode/
+launch.json

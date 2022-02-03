@@ -6,7 +6,7 @@
 	name = Federico Calore
 	email = Federico.Calore@ing.nl
 [core]
-	excludesfile = /Users/federico/.gitignore_global
+	excludesfile = ~/.gitignore_global
 	editor = nvim
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
@@ -15,7 +15,7 @@
 	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
 [commit]
-	template = /Users/federico/.stCommitMsg
+	template = ~/.stCommitMsg
 [color]
 	diff = auto
 	branch = auto
